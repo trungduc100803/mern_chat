@@ -1,0 +1,6 @@
+@import './variable.scss';
+
+@mixin lineRight {
+    border-right: 0.5px solid $line_color_light;
+    min-height: 100vh;
+}
