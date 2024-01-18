@@ -1,0 +1,54 @@
+@import '../../mixin.scss';
+@import '../../variable.scss';
+
+.itemChat {
+    padding: 6px;
+    border-radius: 10px;
+    background-color: $notHover_color_light;
+    margin-bottom: 6px;
+    @include flex;
+    color: $font_color_light;
+    position: relative;
+
+    &:hover {
+        @include hover;
+    }
+
+    .itemChat_avatar {
+        width: 50px;
+        margin-right: 12px;
+
+        .avatar {
+            @include avatar;
+        }
+    }
+
+    .itemChat_name {
+        font-size: 01rem;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    .itemChat_message {
+        @include flex;
+        font-size: 0.9rem;
+        color: $fontHover_color_light;
+
+        .itemChat_usersend {
+            font-weight: bold;
+            margin-right: 4px;
+        }
+    }
+
+    .itemChat_setting {
+        @include btn_border;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 12px;
+    }
+
+    &.active {
+        background-color: $hover_color_light;
+    }
+}

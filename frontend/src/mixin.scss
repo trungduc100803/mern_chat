@@ -1,0 +1,34 @@
+@import './variable.scss';
+
+@mixin lineRight {
+    border-right: 0.5px solid $line_color_light;
+    height: 100%;
+}
+
+@mixin flex {
+    display: flex;
+    align-items: center;
+}
+
+@mixin btn_border {
+    margin-left: 10px;
+    padding: 10px;
+    background-color: $notHover_color_light;
+    border-radius: 1000px;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+@mixin avatar {
+    padding-top: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100px;
+}
+
+@mixin hover {
+    background-color: $hover_color_light;
+    transition: all ease-in 0.2s;
+    cursor: pointer;
+}

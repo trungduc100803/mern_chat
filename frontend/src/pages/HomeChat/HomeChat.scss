@@ -1,0 +1,120 @@
+@import '../../mixin.scss';
+@import '../../variable.scss';
+
+.HomeChat,
+.homechat_inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%
+}
+
+.HomeChat_head {
+    @include flex;
+    justify-content: space-between;
+    padding: 12px;
+    box-shadow: rgba(173, 173, 173, 0.2) 0px 7px 29px 0px;
+
+    .HomeChat_left {
+        @include flex;
+
+        .HomeChat_avatar {
+            width: 50px;
+            margin-right: 12px;
+
+            div {
+                @include avatar;
+            }
+        }
+
+        .HomeChat_info_username {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .HomeChat_info_status {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: $fontHover_color_light;
+        }
+    }
+
+    .HomeChat_media {
+        .HomeChat_media_item {
+            @include btn_border;
+
+            &:hover {
+                fill: black;
+                background-color: $hover_color_light;
+                transition: all ease-in 0.2s;
+            }
+        }
+    }
+}
+
+.HomeChat_content {
+    flex: 1;
+
+    .HomeChat_content_intro {
+        margin-top: 200px;
+        margin-bottom: 80px;
+
+        .HomeChat_content_intro_avatar {
+            width: 46px;
+            margin: auto;
+            margin-bottom: 12px;
+
+            div {
+                @include avatar;
+            }
+        }
+
+        .HomeChat_content_intro_name {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 10px 0
+        }
+
+        .HomeChat_content_intro_more {
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+    }
+}
+
+.HomeChat_task {
+    @include flex;
+    padding-bottom: 12px;
+    padding-right: 12px;
+
+    .HomeChat_task_action {
+        @include btn_border;
+
+        &:hover {
+            fill: black;
+            background-color: $hover_color_light;
+            transition: all ease-in 0.2s;
+        }
+    }
+
+    .HomeChat_task_like {
+        color: #3578e5;
+    }
+
+    .HomeChat_task_input {
+        flex: 1;
+        margin: 0 10px;
+        padding: 12px;
+        border-radius: 20px;
+        background-color: $notHover_color_light;
+
+        input {
+            width: 100%;
+            outline: none;
+            border: none;
+            background-color: $notHover_color_light;
+            font-size: 1rem;
+        }
+    }
+}

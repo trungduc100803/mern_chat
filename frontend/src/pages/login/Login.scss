@@ -1,0 +1,83 @@
+@import '../../variable.scss';
+
+.Login {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(90deg, $left_bg_gradient_light, $right_bg_gradient_light);
+
+    .login_inner {
+        margin: auto;
+        padding: 12px;
+        min-width: 500px;
+        max-width: 1200px;
+        border-radius: 12px;
+        background-color: $bg_color_primary_light;
+
+        .login_title {
+            text-align: center;
+            font-size: 1.6rem;
+            color: $font_color_light;
+            margin-bottom: 50px;
+        }
+
+        .login_input {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+
+            label {
+                font-size: 1rem;
+                color: $font_color_light;
+                margin-bottom: 6px;
+            }
+
+            input {
+                padding: 10px 12px;
+                border-radius: 10px;
+                border: 0.5px solid $font_color_light;
+                outline: none;
+                font-size: 1rem;
+            }
+
+            span {
+                color: red;
+                font-size: 0.8rem;
+                margin-top: 4px;
+            }
+        }
+
+        .btn_login {
+            margin-top: 40px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            color: $bg_color_primary_light;
+            background-color: $right_bg_gradient_light;
+        }
+
+        .forgot_password {
+            display: block;
+            text-align: end;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            color: $right_bg_gradient_light;
+
+            &hover {
+                cursor: pointer;
+                transition: all ease-in 0.2s;
+                color: $left_bg_gradient_light;
+            }
+
+        }
+
+        .signup {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+    }
+}

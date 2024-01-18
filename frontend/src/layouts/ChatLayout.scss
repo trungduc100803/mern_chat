@@ -1,0 +1,19 @@
+@import '../variable.scss';
+@import '../mixin.scss';
+
+.ChatLayout {
+    display: flex;
+    height: 100%;
+    color: $font_color_light;
+    background-color: $bg_color_primary_light;
+
+    .chat_sidebar_layout {
+        width: 25%;
+        @include lineRight;
+    }
+
+    .chat_children_layout {
+        flex: 1;
+    }
+
+}

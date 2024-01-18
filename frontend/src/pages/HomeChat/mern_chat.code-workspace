@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../.."
+		},
+		{
+			"path": "../../../../../mern_Stack/server"
+		},
+		{
+			"path": "../../../../../mern_Stack/client"
+		}
+	]
+}

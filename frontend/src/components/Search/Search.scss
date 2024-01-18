@@ -1,0 +1,72 @@
+@import '../../variable.scss';
+@import '../../mixin.scss';
+
+
+.Search {
+    @include flex;
+    position: relative;
+
+    .search_back {
+        @include btn_border;
+        margin-left: 0;
+        margin-right: 10px;
+        display: none;
+
+        &:hover {
+            fill: black;
+            background-color: $hover_color_light;
+            transition: all ease-in 0.2s;
+        }
+    }
+
+    .Search_main {
+        @include flex;
+        flex: 1;
+        padding: 12px;
+        background-color: $notHover_color_light;
+        border-radius: 16px;
+
+        .search_icon {
+            font-size: 1.2rem;
+        }
+
+        .search_input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            background-color: $notHover_color_light;
+            font-size: 1rem;
+            margin-left: 6px;
+        }
+
+    }
+
+    .search_result {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: calc(100% + 4px);
+        height: 100vh;
+        background-color: $bg_color_primary_light;
+        display: none;
+        padding: 10px;
+        z-index: 100;
+
+        .search_result_icon {
+            @include flex;
+            display: none;
+
+            .search_icon {
+                font-size: 1.6rem;
+                margin-right: 10px;
+            }
+
+            span {
+                font-size: 1rem;
+            }
+        }
+
+    }
+}

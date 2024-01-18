@@ -1,0 +1,39 @@
+@import '../../mixin.scss';
+@import '../../variable.scss';
+
+
+.MessageRecieved {
+    margin-left: 12px;
+    @include flex;
+    margin-bottom: 12px;
+
+    .MessageRecieved_avatar {
+        width: 36px;
+        margin-right: 12px;
+
+        div {
+            @include avatar;
+        }
+    }
+
+    .MessageRecieved_text {
+        font-size: 1rem;
+        padding: 10px;
+        border-radius: 16px;
+        background-color: $notHover_color_light;
+    }
+}
+
+
+.MessageSend {
+    @include flex;
+    justify-content: flex-end;
+    margin-right: 12px;
+
+    .MessageSend_text {
+        font-size: 1rem;
+        padding: 10px;
+        border-radius: 16px;
+        background-color: $notHover_color_light;
+    }
+}

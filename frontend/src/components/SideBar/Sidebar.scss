@@ -1,0 +1,49 @@
+@import '../../variable.scss';
+@import '../../mixin.scss';
+
+
+.SideBar {
+    padding: 12px;
+
+    .SideBar_avatar {
+        width: 46px;
+        margin-left: 10px;
+
+        div {
+            @include avatar;
+        }
+    }
+}
+
+.sidebar_head {
+    display: flex;
+    justify-content: space-between;
+
+    .sidebar_head_action {
+        @include flex;
+    }
+
+    .namechat {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+
+    .sidebar_head_action_item {
+        @include btn_border;
+
+        &:hover {
+            fill: black;
+            background-color: $hover_color_light;
+            transition: all ease-in 0.2s;
+        }
+    }
+
+}
+
+.sidebar_search {
+    margin-top: 16px;
+}
+
+.sidebar_chat {
+    margin-top: 24px;
+}
