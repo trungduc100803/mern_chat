@@ -18,6 +18,10 @@ function ChatLayout({ children }) {
         socket.emit('user-online', IDAuth)
     }, [])
 
+    window.onbeforeunload = function () {
+        return "Dữ liệu của bạn sẽ bị mất. Bạn có chắc muốn rời khỏi trang?";
+    };
+
     if (token.current === null) {
         window.location.href = 'http://localhost:3000/login'
     } else {

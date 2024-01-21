@@ -8,11 +8,25 @@ const messageController = {
                 message: "Invalid fields"
             })
 
-            const messages = await messageModel.find({ sender: req.query.IDSender, userRecevied: req.query.IDUserRecevied })
+            const messagesSend = await messageModel.find({ sender: req.query.IDSender, userRecevied: req.query.IDUserRecevied })
+            const messagesRecevied = await messageModel.find({ sender: req.query.IDUserRecevied, userRecevied: req.query.IDSender })
+
+            const messages = [...messagesSend, ...messagesRecevied]
+
+            // sort message from comming to lates
+            for (let i = 1; i < messages.length; i++) {
+                let messcomming = messages[i]
+                let j = i - 1
+                while (j >= 0 && messages[j].createdAt > messcomming.createdAt) {
+                    messages[j + 1] = messages[j]
+                    j--
+                }
+                messages[j + 1] = messcomming
+            }
 
             return res.status(200).send({
                 success: true,
-                message: "success",
+                message: "successd",
                 messages
             })
         } catch (error) {

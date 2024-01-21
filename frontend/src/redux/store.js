@@ -13,6 +13,8 @@ import storage from 'redux-persist/lib/storage'
 import authReducer from './authSlice'
 import chatReducer from './chatSlice'
 import messageReducer from './messageSlice'
+import welcomeReducer from './showWelcome'
+
 
 const persistConfig = {
     key: 'root',
@@ -25,7 +27,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
     auth: authReducer,
     chat: chatReducer,
-    message: messageReducer
+    message: messageReducer,
+    welcome: welcomeReducer
 })
 
 const persistedReducer = persistReducer(

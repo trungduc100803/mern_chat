@@ -1,6 +1,6 @@
 import request from "../config/axios";
 import { setSuccessAuth, setEmptyAuth, setErrAuth } from '../redux/authSlice'
-import { setSuccesMessage, setFailMessage } from '../redux/messageSlice'
+import { setSuccesMessage, setFailMessage, setLatestMessage } from '../redux/messageSlice'
 import { setChats } from "../redux/chatSlice";
 
 export const login = async (data, dispatch) => {
@@ -41,6 +41,17 @@ export const getAllMessageForChat = async (dispatch, IDSender, IDUserrecevied) =
     await request.get(`message/get-all-message-for-a-chat?IDSender=${IDSender}&IDUserRecevied=${IDUserrecevied}`)
         .then(res => {
             dispatch(setSuccesMessage(res.data))
+        })
+        .catch(err => {
+            dispatch(setFailMessage("err when get message"))
+        })
+}
+
+export const getMessageLatest = async (dispatch, IDSender, IDUserrecevied) => {
+    await request.get(`message/get-all-message-for-a-chat?IDSender=${IDSender}&IDUserRecevied=${IDUserrecevied}`)
+        .then(res => {
+            const allMessage = res.data.messages
+            dispatch(setLatestMessage(allMessage[allMessage.length - 1]))
         })
         .catch(err => {
             dispatch(setFailMessage("err when get message"))

@@ -38,6 +38,54 @@
         }
     }
 
+    .more_options {
+        position: relative;
+
+        .more_options_dropdown {
+            visibility: hidden;
+            z-index: 20;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            min-width: 250px;
+            max-width: 300px;
+            border-radius: 12px;
+            background-color: $bg_color_primary_light;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            overflow: hidden;
+
+            .more_options_item {
+                color: $font_color_light;
+                text-decoration: none;
+                display: flex;
+                @include flex;
+                cursor: pointer;
+
+                .more_options_item_icon {
+                    font-size: 1.6rem;
+                    margin-right: 10px;
+                    padding: 10px 8px;
+
+                }
+
+                p {
+                    font-size: 1rem;
+                }
+
+                &:hover {
+                    @include hover
+                }
+            }
+
+            &.active {
+                visibility: visible;
+            }
+        }
+
+    }
+
+
+
 }
 
 .sidebar_search {

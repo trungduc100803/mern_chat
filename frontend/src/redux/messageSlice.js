@@ -4,7 +4,8 @@ const messageSlice = createSlice({
     name: 'message',
     initialState: {
         allMessage: null,
-        errMessage: ''
+        errMessage: '',
+        latestMessage: null
     },
     reducers: {
         setSuccesMessage: (state, actions) => {
@@ -13,10 +14,13 @@ const messageSlice = createSlice({
         setFailMessage: (state, actions) => {
             state.allMessage = null
             state.errMessage = actions.payload
+        },
+        setLatestMessage: (state, actions) => {
+            state.latestMessage = actions.payload
         }
     }
 })
 
 
 export default messageSlice.reducer
-export const { setSuccesMessage, setFailMessage } = messageSlice.actions
+export const { setSuccesMessage, setFailMessage, setLatestMessage } = messageSlice.actions

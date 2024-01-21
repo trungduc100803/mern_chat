@@ -1,0 +1,11 @@
+.Welcome {
+    display: flex;
+    height: 100%;
+
+    .img_no_message {
+        margin: auto;
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+    }
+}

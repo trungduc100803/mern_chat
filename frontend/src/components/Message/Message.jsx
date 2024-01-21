@@ -1,18 +1,30 @@
 import './Message.scss'
+import userEmpty from '../../assets/userEmpty.png'
 
-function Message({ who, content }) {
-    if (who === 'send') {
-        return <MessageSend content={content} />
+import { useSelector } from 'react-redux';
+
+
+function Message({ who, content, avatar }) {
+    const { currentAuth } = useSelector(state => state.auth)
+
+    if (who === currentAuth.auth._id) {
+        return <MessageSend content={content} avatar={avatar} />
     } else {
-        return <MessageRecieved content={content} />
+        return <MessageRecieved content={content} avatar={avatar} />
     }
 }
 
 
-const MessageRecieved = ({ content }) => {
+const MessageRecieved = ({ content, avatar }) => {
     return <div className="MessageRecieved">
         <div className="MessageRecieved_avatar">
-            <div style={{ backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrup-cpqP0Bw5YnJJ-b8YwyExZQX745APk6A&usqp=CAU)` }}></div>
+            {
+                avatar === '' ?
+                    <div style={{ backgroundImage: `url(${userEmpty})` }}></div>
+                    :
+                    <div style={{ backgroundImage: `url(${avatar})` }}></div>
+
+            }
         </div>
         <div className="MessageRecieved_text">{content}</div>
     </div>

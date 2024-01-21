@@ -1,19 +1,22 @@
 import './HomeChat.scss'
 import userEmpty from '../../assets/userEmpty.png'
-import { getAllMessageForChat, createMessage } from '../../services/api'
+import { getAllMessageForChat, createMessage, getMessageLatest } from '../../services/api'
 import Message from '../../components/Message/Message'
 import socket from '../../config/socketIO'
-
+import { setShowWelcome } from '../../redux/showWelcome'
+import Welcome from '../../components/Welcome/Welcome'
+import emoji from '../../assets/emoji.png'
 
 import { toast } from 'react-toastify'
 import {
     PhoneOutlined, VideoCameraOutlined,
     InfoCircleOutlined, AudioOutlined,
-    FileImageOutlined, LikeOutlined
+    FileImageOutlined, LikeOutlined,
+    SmileOutlined
 }
     from '@ant-design/icons'
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 
 
@@ -24,7 +27,7 @@ function HomeChat() {
     const { chat } = useSelector(state => state.chat)
     const { currentAuth } = useSelector(state => state.auth)
     const { allMessage } = useSelector(state => state.message)
-
+    const { status } = useSelector(state => state.welcome)
 
     const handleSubmitMessage = (event) => {
         event.preventDefault()
@@ -32,36 +35,46 @@ function HomeChat() {
         if (content === "") {
             toast.warning("Bạn chưa nhập nội dung tin nhắn!!!")
         } else {
+            const frameChat = document.querySelector('.HomeChat_content')
             event.target[1].value = ''
             createMessage(currentAuth.auth._id, chat._id, content)
+            getAllMessageForChat(dispatch, currentAuth.auth._id, chat._id)
+            getMessageLatest(dispatch, currentAuth.auth._id, chat._id)
+            frameChat.scrollTop = frameChat.scrollHeight
             const data = {
                 from: currentAuth.auth._id,
                 to: chat._id,
                 content: content
             }
+
             socket.emit('send-message', data)
         }
     }
 
 
-    useEffect(() => {
-        getAllMessageForChat(dispatch, currentAuth.auth._id, chat._id)
-    }, [])
+
 
     useEffect(() => {
         socket.on('recevie-message', data => {
-            console.log(data)
+            getAllMessageForChat(dispatch, currentAuth.auth._id, chat._id)
+            getMessageLatest(dispatch, currentAuth.auth._id, chat._id)
+            const frameChat = document.querySelector('.HomeChat_content')
+            frameChat.scrollTop = frameChat.scrollHeight
         })
+
+        dispatch(setShowWelcome())
     }, [])
 
 
-    console.log(chat)
-
+    useEffect(() => {
+        const frameChat = document.querySelector('.HomeChat_content')
+        if (status === false) frameChat.scrollTop = frameChat.scrollHeight
+    }, [status])
 
     return <div className="HomeChat">
         {
-            chat === null ?
-                <></> :
+            status === true ?
+                <Welcome /> :
 
                 <div className="homechat_inner">
 
@@ -108,14 +121,11 @@ function HomeChat() {
 
                         <div className="HomeChat_content_inner">
                             {
-                                allMessage.messages.map((message, i) => {
-                                    if (message.sender === currentAuth.auth._id) {
-                                        return <Message key={i} who={'send'} content={"hi"} />
-                                    } else {
-                                        return <Message key={i} who={'send'} content={"hi"} />
-                                    }
-                                })
-
+                                allMessage === null ?
+                                    <></> :
+                                    allMessage.messages.map((message, i) => {
+                                        return <Message key={i} avatar={chat.avatar} who={message.sender} content={message.content} />
+                                    })
                             }
 
                         </div>
@@ -128,6 +138,7 @@ function HomeChat() {
                         <label htmlFor="fileChat">
                             <FileImageOutlined className='HomeChat_task_action' />
                         </label>
+                        <SmileOutlined className='HomeChat_task_action' />
                         <input type="file" name="file" id="fileChat" hidden />
 
                         <div className="HomeChat_task_input">
