@@ -42,7 +42,7 @@ function SideBar() {
                 <div className="more_options">
                     <EllipsisOutlined className='sidebar_head_action_item ' onClick={handleShowMore} />
                     <div className={visibilityMoreOptiopns ? 'more_options_dropdown active' : 'more_options_dropdown'}>
-                        <Link to={'/decovery'} className="more_options_item">
+                        <Link to={'/discovery'} className="more_options_item">
                             <UsergroupAddOutlined className='more_options_item_icon' />
                             <p>Khám phá</p>
                         </Link>
@@ -56,12 +56,12 @@ function SideBar() {
                 <LogoutOutlined onClick={handleLogout} className='sidebar_head_action_item' />
                 {
                     currentAuth.auth.avatar !== '' ?
-                        <div className="SideBar_avatar" >
+                        <Link className="SideBar_avatar" >
                             <div className='avatar' style={{ backgroundImage: `url(${currentAuth.auth?.avatar})` }}></div>
-                        </div> :
-                        <div className="SideBar_avatar" >
+                        </Link> :
+                        <Link className="SideBar_avatar" >
                             <div className='avatar' style={{ backgroundImage: `url(${userEmpty})` }}></div>
-                        </div>
+                        </Link>
                 }
             </div>
         </div>

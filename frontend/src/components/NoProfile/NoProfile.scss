@@ -1,0 +1,21 @@
+.NoProfile {
+    display: flex;
+    height: 100%;
+
+    .NoProfile_inner {
+        margin: auto;
+        text-align: center;
+
+        img {
+            width: 250px;
+            height: 250px;
+        }
+
+        p {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+
+    }
+}

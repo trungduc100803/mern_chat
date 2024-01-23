@@ -1,0 +1,56 @@
+@import '../../variable';
+@import '../../mixin.scss';
+
+
+.Discovery {}
+
+.sidebarDiscovery {
+    @include lineRight;
+    padding: 0 10px;
+
+    .pt {
+        padding-top: 50px;
+    }
+
+    .sidebarDiscovery_item {
+        @include flex;
+        text-decoration: none;
+        color: $font_color_light;
+
+        .sidebarDiscovery_icon {
+            @include btn_border;
+            margin-right: 10px;
+        }
+
+        p {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        &:hover {
+            @include hover;
+            border-radius: 10px;
+        }
+
+        &.active {
+            @include hover;
+            border-radius: 10px;
+        }
+    }
+
+}
+
+
+.innerDiscovery {
+    height: 100%;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .innerDiscovery_item {
+        width: 15%;
+
+    }
+}

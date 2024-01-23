@@ -5,13 +5,15 @@ import ChatLayout from "../layouts/ChatLayout"
 
 import HomeChat from "../pages/HomeChat/HomeChat"
 import Login from "../pages/login/Login"
-import Decovery from "../pages/Decovery/Decovery"
-
+import Discovery from "../pages/Discovery/Discovery"
+import RequestAddFriend from "../pages/RequestAddFriend/RequestAddFriend"
 
 const publicRoute = [
     { path: routes.home, page: HomeChat, layout: ChatLayout },
     { path: routes.login, page: Login, layout: CenterLayout },
-    { path: routes.decovery, page: Decovery, layout: CenterLayout },
+    { path: routes.decovery, page: Discovery, layout: CenterLayout },
+    { path: routes.addFriend, page: RequestAddFriend, layout: CenterLayout },
+    { path: routes.profile, page: RequestAddFriend, layout: CenterLayout },
 ]
 
 

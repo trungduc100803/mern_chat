@@ -1,0 +1,57 @@
+@import '../../variable';
+
+
+.card {
+
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .card_img {
+
+        div {
+            padding-top: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+
+    .card_content {
+        padding: 10px;
+        background-color: $hover_color_light;
+        display: flex;
+        flex-direction: column;
+        font-size: 1rem;
+
+        .card_name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            padding: 6px;
+            border-radius: 6px;
+        }
+
+        .card_btn_ok {
+            margin-top: 16px;
+            margin-bottom: 10px;
+            background-color: $right_bg_gradient_light;
+
+            &:hover {
+                background-color: $left_bg_gradient_light;
+                transition: all ease 0.2s;
+            }
+        }
+
+        .card_btn_delete {
+            &:hover {
+                background-color: $fontHover_color_light;
+                transition: all ease 0.2s;
+            }
+        }
+    }
+}

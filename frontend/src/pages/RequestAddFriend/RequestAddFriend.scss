@@ -1,0 +1,128 @@
+@import '../../mixin.scss';
+@import '../../variable';
+
+.SidebarRequestAddFriend {
+
+    height: 100vh;
+
+    .pt {
+        padding-top: 50px;
+    }
+
+    .SidebarRequestAddFriend_back {
+        border-bottom: 0.5px solid $line_color_light;
+        padding-bottom: 12px;
+        margin-right: 10px;
+        margin-left: 10px;
+
+        .SidebarRequestAddFriend_back_icon {
+            @include btn_border;
+            margin-right: 10px;
+
+            &:hover {
+                @include hover;
+            }
+        }
+
+        span {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+    }
+
+    .SidebarRequestAddFriend_body {
+        padding: 0 10px;
+        overflow-y: scroll;
+        height: 100%;
+
+        &::-webkit-scrollbar {
+            display: none
+        }
+
+        .SidebarRequestAddFriend_body_numFriend {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 16px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .SidebarRequestAddFriend_item {
+        @include flex;
+        padding: 10px;
+        border-radius: 10px;
+        position: relative;
+        color: $font_color_light;
+        text-decoration: none;
+
+        &:hover {
+            @include hover;
+        }
+
+        .SidebarRequestAddFriend_item_time {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: $fontHover_color_light;
+        }
+    }
+
+    .SidebarRequestAddFriend_item_img {
+        width: 60px;
+        border-radius: 1000px;
+        overflow: hidden;
+        margin-right: 12px;
+        border: 0.5px solid $line_color_light;
+
+        div {
+            padding-top: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+    }
+
+    .SidebarRequestAddFriend_item_name {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .SidebarRequestAddFriend_item_btn {
+        button {
+            border: none;
+            outline: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .SidebarRequestAddFriend_item_btnOK {
+            margin-top: 10px;
+            margin-right: 12px;
+            background-color: $right_bg_gradient_light;
+
+            &:hover {
+                background-color: $left_bg_gradient_light;
+                transition: all ease 0.2s;
+                cursor: pointer;
+            }
+        }
+
+        .SidebarRequestAddFriend_item_btnDelete {
+            &:hover {
+                cursor: pointer;
+                background-color: $fontHover_color_light;
+                transition: all ease 0.2s;
+            }
+        }
+    }
+}
+
+
+
+.InnerRequestAddFriend {
+    height: 100%;
+}
