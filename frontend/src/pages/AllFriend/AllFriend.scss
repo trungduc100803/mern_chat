@@ -1,7 +1,7 @@
 @import '../../mixin.scss';
 @import '../../variable';
 
-.SidebarRequestAddFriend {
+.AllFriendSidebar {
 
     height: 100vh;
 
@@ -9,13 +9,13 @@
         padding-top: 50px;
     }
 
-    .SidebarRequestAddFriend_back {
+    .AllFriendSidebar_back {
         border-bottom: 0.5px solid $line_color_light;
         padding-bottom: 12px;
         margin-right: 10px;
         margin-left: 10px;
 
-        .SidebarRequestAddFriend_back_icon {
+        .AllFriendSidebar_back_icon {
             @include btn_border;
             margin-right: 10px;
 
@@ -30,7 +30,7 @@
         }
     }
 
-    .SidebarRequestAddFriend_body {
+    .AllFriendSidebar_body {
         padding: 0 10px;
         overflow-y: scroll;
         height: 100%;
@@ -39,15 +39,9 @@
             display: none
         }
 
-        .SidebarRequestAddFriend_body_numFriend {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-top: 16px;
-            margin-bottom: 20px;
-        }
     }
 
-    .SidebarRequestAddFriend_item {
+    .AllFriendSidebar_item {
         @include flex;
         padding: 10px;
         border-radius: 10px;
@@ -59,7 +53,7 @@
             @include hover;
         }
 
-        .SidebarRequestAddFriend_item_time {
+        .AllFriendSidebar_item_time {
             position: absolute;
             right: 10px;
             top: 10px;
@@ -69,7 +63,7 @@
         }
     }
 
-    .SidebarRequestAddFriend_item_img {
+    .AllFriendSidebar_item_img {
         width: 60px;
         border-radius: 1000px;
         overflow: hidden;
@@ -85,12 +79,12 @@
         }
     }
 
-    .SidebarRequestAddFriend_item_name {
+    .AllFriendSidebar_item_name {
         font-size: 1rem;
         font-weight: 600;
     }
 
-    .SidebarRequestAddFriend_item_btn {
+    .AllFriendSidebar_item_btn {
         button {
             border: none;
             outline: none;
@@ -99,7 +93,7 @@
             font-size: 1rem;
         }
 
-        .SidebarRequestAddFriend_item_btnOK {
+        .AllFriendSidebar_item_btnOK {
             margin-top: 10px;
             margin-right: 12px;
             background-color: $right_bg_gradient_light;
@@ -111,7 +105,7 @@
             }
         }
 
-        .SidebarRequestAddFriend_item_btnDelete {
+        .AllFriendSidebar_item_btnDelete {
             &:hover {
                 cursor: pointer;
                 background-color: $fontHover_color_light;
@@ -123,7 +117,7 @@
 
 
 
-.InnerRequestAddFriend {
+.AllFriendInner {
     height: 100%;
 
 }

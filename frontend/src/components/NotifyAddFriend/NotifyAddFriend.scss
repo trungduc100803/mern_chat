@@ -1,0 +1,30 @@
+@import '../../variable.scss';
+@import '../../mixin.scss';
+
+.NotifyAddFriend {
+    @include flex;
+
+    .NotifyAddFriend_img {
+        width: 50px;
+        margin-right: 12px;
+
+        .NotifyAddFriend_url_img {
+            div {
+                @include avatar;
+            }
+        }
+    }
+
+    .NotifyAddFriend_content {
+        font-size: 1rem;
+
+        span {
+            font-weight: 600;
+        }
+    }
+
+    .NotifyAddFriend_time {
+        color: rgb(61, 211, 211);
+        margin-top: 4px;
+    }
+}

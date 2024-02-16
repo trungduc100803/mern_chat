@@ -5,7 +5,8 @@ const routes = {
     decovery: '/discovery',
     addFriend: '/discovery/request-add-friend',
     allFriend: '/discovery/all-friend',
-    profile: '/profile/:id'
+    profile: '/profile/:id',
+    me: '/me/profile/:id'
 }
 
 export default routes;

@@ -14,7 +14,7 @@ import authReducer from './authSlice'
 import chatReducer from './chatSlice'
 import messageReducer from './messageSlice'
 import welcomeReducer from './showWelcome'
-
+import friendReducer from './friendSlice'
 
 const persistConfig = {
     key: 'root',
@@ -28,7 +28,8 @@ const rootReducer = combineReducers({
     auth: authReducer,
     chat: chatReducer,
     message: messageReducer,
-    welcome: welcomeReducer
+    welcome: welcomeReducer,
+    friend: friendReducer
 })
 
 const persistedReducer = persistReducer(

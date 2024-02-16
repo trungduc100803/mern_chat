@@ -1,0 +1,318 @@
+@import '../../variable.scss';
+@import '../../mixin.scss';
+
+.Profile {
+    padding: 0px 70px;
+    margin-top: -20px;
+
+    .Profile_head {
+        position: relative;
+
+        .Profile_cover {
+            width: 100%;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border-radius: 12px;
+            overflow: hidden;
+
+            .Profile_cover_img {
+                padding-top: 30%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+
+        .Profile_avatar_group {
+            @include flex;
+            align-items: end;
+            position: absolute;
+            bottom: calc(($width_avatar/-2));
+            width: 100%;
+            padding: 0 $padding_frofile;
+
+            .Profile_avatar {
+                width: $width_avatar;
+
+
+                .Profile_avatar_img {
+                    border: 3.5px solid $notHover_color_light;
+                    border-radius: 1000px;
+                    padding-top: 100%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            }
+
+            span {
+                margin-left: 30px;
+                font-size: 1.6rem;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+
+            .Profile_group_btn {
+                display: flex;
+                justify-content: end;
+                flex: 1;
+                margin-right: calc($padding_frofile*2);
+                margin-bottom: 20px;
+
+                button {
+                    outline: none;
+                    border: none;
+                    border-radius: 6px;
+                    padding: 10px 20px;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                }
+
+                .btn_edit_profile,
+                .btn_accept_friend {
+                    margin-right: 20px;
+                    background-color: $right_bg_gradient_light;
+
+                    &:hover {
+                        background-color: $left_bg_gradient_light;
+                        transition: all ease 0.2s;
+                        cursor: pointer;
+                    }
+                }
+
+                .btn_send_message {
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: $fontHover_color_light;
+                        transition: all ease 0.2s;
+                    }
+                }
+            }
+
+        }
+    }
+
+
+
+
+
+    .Profile_inner {
+        margin-top: calc($width_avatar - 20px);
+        display: flex;
+
+        .Profile_inner_info {
+            width: 45%;
+
+            .Profile_inner_info_intro {
+                background-color: $bg_color_primary_light;
+                padding: 16px $padding_item_frofile;
+                border-radius: 10px;
+
+                h2 {
+                    font-size: 1.4rem;
+                    margin: 0;
+                }
+
+                .Profile_inner_info_intro_des {
+                    display: block;
+                    text-align: center;
+                    font-size: 0.9rem;
+                    padding-bottom: 20px;
+                    border-bottom: 0.5px solid $notHover_color_light;
+                }
+
+                .Profile_inner_info_item {
+                    margin: 16px 0;
+                    font-size: 1rem;
+
+                    .Profile_inner_info_item_icon {
+                        font-size: 1.4rem;
+                        margin-right: 12px;
+                        color: $fontHover_color_light;
+                    }
+
+                    span {}
+
+                    .Profile_inner_info_item_bold {
+                        font-weight: 600;
+
+                        &:hover {
+                            cursor: pointer;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+
+        .Profile_inner_content {
+            width: 55%;
+            margin-left: 12px;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .Profile_inner_content_item {
+                margin-bottom: 12px;
+                background-color: $bg_color_primary_light;
+                padding: $padding_item_frofile;
+                border-radius: 10px;
+
+                .Profile_inner_content_head {
+                    @include flex;
+                    justify-content: space-between
+                }
+
+                .Profile_inner_content_head_left {
+                    @include flex;
+                }
+
+
+                .Profile_inner_content_avatar {
+                    width: 45px;
+
+                    .Profile_inner_content_avatar_img {
+                        div {
+                            @include avatar;
+                        }
+                    }
+                }
+
+                .Profile_inner_content_item_info {
+                    margin-left: 12px;
+                    font-size: 0.9rem;
+
+                    .Profile_inner_content_item_name {
+                        font-weight: 600;
+
+                        &:hover {
+                            cursor: pointer;
+                            text-decoration: underline;
+                        }
+                    }
+
+                    .Profile_inner_content_item_timeUp {
+                        color: $fontHover_color_light;
+                        margin-top: 3px;
+                    }
+                }
+
+                .Profile_inner_content_item_more {
+                    font-size: 1.6rem;
+                    margin-right: 20px;
+
+                    &:hover {
+                        cursor: pointer;
+                        transition: all ease 0.2s;
+                        color: $fontHover_color_light;
+                    }
+                }
+
+
+
+
+
+
+
+                .Profile_inner_content_body_caption {
+                    font-size: 0.9rem;
+                    margin-top: 12px;
+                    text-align: justify;
+                }
+
+                .Profile_inner_content_body_list_img {
+                    width: 100%;
+                    margin-top: 12px;
+
+                    div {
+                        height: 700px;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                    }
+                }
+
+
+                .Profile_inner_content_status {
+                    margin: 10px 0;
+                    @include flex;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        object-fit: cover;
+                    }
+
+                    .Profile_inner_content_status_number {
+                        font-size: 0.9rem;
+                        margin-left: 6px;
+                    }
+                }
+
+                .Profile_inner_content_btn {
+                    @include flex;
+                    font-size: 1rem;
+                    justify-content: space-between;
+                    border-bottom: 0.5px solid $notHover_color_light;
+                    border-top: 0.5px solid $notHover_color_light;
+
+                    button {
+                        flex: 1;
+                        border: none;
+                        outline: none;
+                        padding: 10px 0;
+                        background-color: $bg_color_primary_light;
+
+                        &:hover {
+                            cursor: pointer;
+                            transition: all ease 0.2s;
+                            border-radius: 6px;
+                            background-color: $notHover_color_light;
+                        }
+                    }
+                }
+
+
+
+                .Profile_inner_content_comment {
+                    @include flex;
+                    margin-top: 16px;
+                }
+
+                .Profile_inner_content_comment_avatar {}
+
+                .Profile_inner_content_comment_avatar_img {
+                    width: 40px;
+                    margin-right: 12px;
+
+                    div {
+                        @include avatar;
+                    }
+                }
+
+                .Profile_inner_content_comment_input {
+                    margin-right: $padding_item_frofile;
+                    flex: 1;
+                    @include flex;
+                    border: 1px solid $notHover_color_light;
+                    border-radius: 30px;
+                    overflow: hidden;
+                    background-color: $notHover_color_light;
+
+                    .Profile_inner_content_comment_ip_text {
+                        flex: 1;
+                        border: none;
+                        outline: none;
+                        font-size: 1rem;
+                        padding: 10px 12px;
+                        background-color: inherit;
+                    }
+                }
+            }
+        }
+    }
+
+}

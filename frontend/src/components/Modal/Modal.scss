@@ -1,0 +1,31 @@
+@import '../../variable.scss';
+
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    display: flex;
+    padding: 50px 0;
+    visibility: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &.active {
+        visibility: visible;
+    }
+
+    .modal_inner {
+        margin: auto;
+        padding: $padding_item_frofile;
+        border-radius: 10px;
+        background-color: $bg_color_primary_light;
+        min-width: 40%;
+    }
+}

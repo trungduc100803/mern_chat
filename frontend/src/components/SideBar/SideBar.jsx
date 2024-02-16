@@ -55,11 +55,11 @@ function SideBar() {
                 </div>
                 <LogoutOutlined onClick={handleLogout} className='sidebar_head_action_item' />
                 {
-                    currentAuth.auth.avatar !== '' ?
-                        <Link className="SideBar_avatar" >
-                            <div className='avatar' style={{ backgroundImage: `url(${currentAuth.auth?.avatar})` }}></div>
+                    currentAuth?.auth?.avatar !== '' ?
+                        <Link className="SideBar_avatar" to={`/me/profile/${currentAuth?.auth._id}`}>
+                            <div className='avatar' style={{ backgroundImage: `url(${currentAuth?.auth?.avatar})` }}></div>
                         </Link> :
-                        <Link className="SideBar_avatar" >
+                        <Link className="SideBar_avatar" to={`/me/profile/${currentAuth?.auth._id}`}>
                             <div className='avatar' style={{ backgroundImage: `url(${userEmpty})` }}></div>
                         </Link>
                 }

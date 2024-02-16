@@ -46,14 +46,14 @@ function ItemChat({ chat }) {
             <div className="itemChat_name">{chat.username}</div>
             <div className="itemChat_message">
                 {
-                    latestMessage.sender === currentAuth.auth._id ?
+                    latestMessage?.sender === currentAuth.auth._id ?
                         <>
                             <div className="itemChat_usersend">You:</div>
                             <div className="itemChat_content_message">{latestMessage.content}</div>
                         </> :
                         <>
                             <div className="itemChat_usersend">huy:</div>
-                            <div className="itemChat_content_message">{latestMessage.content}</div>
+                            <div className="itemChat_content_message">{latestMessage?.content}</div>
                         </>
                 }
             </div>

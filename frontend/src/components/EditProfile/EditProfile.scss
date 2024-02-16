@@ -1,0 +1,178 @@
+@import '../../variable.scss';
+@import '../../mixin.scss';
+
+
+.EditProfile_head {
+    position: relative;
+    border-bottom: 0.5px solid $notHover_color_light;
+    padding: 20px 0;
+    text-align: center;
+
+    h2 {
+        font-size: 1.1rem;
+        margin: 0
+    }
+}
+
+.btn_close_edit_profile {
+    @include btn_border;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.HeadEdit {
+    @include flex;
+    justify-content: space-between;
+
+    h2 {
+        font-size: 1.1rem;
+    }
+
+    p {
+        font-size: 1rem;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}
+
+.EditProfile_avatar_inner {
+    margin-bottom: 20px;
+
+    .EditProfile_avatar_img {
+        margin-left: 50%;
+        transform: translateX(-50%);
+        width: 170px;
+
+        div {
+            @include avatar;
+        }
+
+    }
+
+    .save_avatar {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+}
+
+.EditProfile_cover_inner {
+    margin: 0 8%;
+    margin-bottom: 20px;
+
+    .EditProfile_cover_img {
+        div {
+            padding-top: 35%;
+            border-radius: 12px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+}
+
+.save_img_cover {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+.EditProfile_desc {
+
+    .EditProfile_desc_ip_edit,
+    .EditProfile_desc_ip {
+        font-size: 1rem;
+        text-align: center;
+        border: none;
+        outline: none;
+        width: 100%;
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    .EditProfile_desc_ip_edit {
+        border: 1px solid $hover_color_light;
+        border-radius: 8px;
+        padding: 12px 0;
+        margin-bottom: 20px;
+    }
+
+    .EditProfile_desc_ip_edit {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .EditProfile_desc_btn {
+        display: none;
+
+        &.active,
+        button {
+            display: flex;
+        }
+    }
+}
+
+.item_info {
+    @include flex;
+
+    span {
+        font-size: 1.2rem;
+    }
+
+    p {
+        margin-left: 12px;
+        font-size: 1rem;
+    }
+}
+
+.modalexit {
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .modalexit_btn {
+        @include flex;
+        justify-content: end;
+    }
+
+    button {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 10px 30px;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+
+    .modalexit_btn_exit {
+        background-color: $right_bg_gradient_light;
+        margin-right: 12px;
+
+        &:hover {
+            transition: all ease 0.2s;
+            background-color: $left_bg_gradient_light;
+        }
+    }
+
+    .modalexit_btn_close {
+        &:hover {
+            transition: all ease 0.2s;
+            background-color: $hover_color_light;
+        }
+    }
+}

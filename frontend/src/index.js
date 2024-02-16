@@ -25,6 +25,7 @@ root.render(
         rtl={false}
         pauseOnFocusLoss
         draggable
+        icon={false}
         pauseOnHover
         theme="light" />
     </PersistGate>

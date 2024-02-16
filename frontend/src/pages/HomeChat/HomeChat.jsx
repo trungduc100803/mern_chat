@@ -5,7 +5,7 @@ import Message from '../../components/Message/Message'
 import socket from '../../config/socketIO'
 import { setShowWelcome } from '../../redux/showWelcome'
 import Welcome from '../../components/Welcome/Welcome'
-import emoji from '../../assets/emoji.png'
+import EmojiPicker from 'emoji-picker-react';
 
 import { toast } from 'react-toastify'
 import {
@@ -25,9 +25,11 @@ function HomeChat() {
 
     const dispatch = useDispatch()
     const { chat } = useSelector(state => state.chat)
+    const profile = chat?.profile
     const { currentAuth } = useSelector(state => state.auth)
     const { allMessage } = useSelector(state => state.message)
     const { status } = useSelector(state => state.welcome)
+    const [openEmoji, setOpenEmoji] = useState(false)
 
     const handleSubmitMessage = (event) => {
         event.preventDefault()
@@ -71,6 +73,14 @@ function HomeChat() {
         if (status === false) frameChat.scrollTop = frameChat.scrollHeight
     }, [status])
 
+    const handleOpenEmoji = () => {
+        setOpenEmoji(!openEmoji)
+    }
+
+    const handleClickEmoji = (emoji) => {
+        console.log(emoji)
+    }
+
     return <div className="HomeChat">
         {
             status === true ?
@@ -81,9 +91,9 @@ function HomeChat() {
                     <div className="HomeChat_head">
                         <div className="HomeChat_left">
                             {
-                                chat.avatar !== '' ?
+                                chat?.avatar !== '' ?
                                     <div className="HomeChat_avatar">
-                                        <div style={{ backgroundImage: `url(${chat.avatar})` }}></div>
+                                        <div style={{ backgroundImage: `url(${chat?.avatar})` }}></div>
                                     </div> :
                                     <div className="HomeChat_avatar">
                                         <div style={{ backgroundImage: `url(${userEmpty})` }}></div>
@@ -106,7 +116,7 @@ function HomeChat() {
                     <div className="HomeChat_content">
                         <div className="HomeChat_content_intro">
                             {
-                                chat.avatar !== '' ?
+                                chat?.avatar !== '' ?
                                     <div className="HomeChat_content_intro_avatar">
                                         <div style={{ backgroundImage: `url(${chat?.avatar})` }}></div>
                                     </div> :
@@ -116,14 +126,16 @@ function HomeChat() {
                             }
 
                             <div className="HomeChat_content_intro_name">{chat?.username}</div>
-                            <div className="HomeChat_content_intro_more">Sống tại Hà Nội</div>
+                            <div className="HomeChat_content_intro_more">{profile?.address}</div>
+                            <div className="HomeChat_content_intro_more">{profile?.career}</div>
+                            <div className="HomeChat_content_intro_more">{profile?.school}</div>
                         </div>
 
                         <div className="HomeChat_content_inner">
                             {
                                 allMessage === null ?
                                     <></> :
-                                    allMessage.messages.map((message, i) => {
+                                    allMessage?.messages.map((message, i) => {
                                         return <Message key={i} avatar={chat.avatar} who={message.sender} content={message.content} />
                                     })
                             }
@@ -138,7 +150,11 @@ function HomeChat() {
                         <label htmlFor="fileChat">
                             <FileImageOutlined className='HomeChat_task_action' />
                         </label>
-                        <SmileOutlined className='HomeChat_task_action' />
+                        <div className="HomeChat_task_emoji">
+                            <SmileOutlined onClick={handleOpenEmoji} className='HomeChat_task_action' />
+                            <EmojiPicker className='HomeChat_task_emojiPicker' open={openEmoji} onEmojiClick={e => handleClickEmoji(e)} />
+
+                        </div>
                         <input type="file" name="file" id="fileChat" hidden />
 
                         <div className="HomeChat_task_input">

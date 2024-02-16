@@ -38,6 +38,21 @@ io.on('connection', (socket) => {
         }
     })
 
+    socket.on('add-friend', (data, callback) => {
+        callback()
+        const idRecevieUser = onlineUser.get(data.to)
+        if (idRecevieUser) {
+            socket.to(idRecevieUser).emit('recevie-add-friend', data.from)
+        }
+    })
+
+    socket.on('accept_request_add_friend', data => {
+        const idRecevieUser = onlineUser.get(data.to)
+        if (idRecevieUser) {
+            socket.to(idRecevieUser).emit('notify_accept_request_add_friend', data.from)
+        }
+    })
+
 
     socket.on('disconnect', () => {
         console.log('user disconnect')

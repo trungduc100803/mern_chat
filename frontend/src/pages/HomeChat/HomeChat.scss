@@ -118,4 +118,13 @@
             font-size: 1rem;
         }
     }
+
+    .HomeChat_task_emoji {
+        position: relative;
+
+        .HomeChat_task_emojiPicker {
+            position: absolute;
+            top: -1100%;
+        }
+    }
 }
