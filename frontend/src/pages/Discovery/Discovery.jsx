@@ -53,7 +53,7 @@ const InnerDiscovery = ({ friendsSuggest }) => {
 
     return <Flex wrap='wrap' gap="large" className="innerDiscovery">
         {
-            friendsSuggest !== undefined ?
+            friendsSuggest !== null ?
                 friendsSuggest.map((friend) => {
 
                     const handleAddFriend = () => {

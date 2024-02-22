@@ -1,0 +1,110 @@
+@import '../../variable.scss';
+@import '../../mixin.scss';
+
+
+.CreatePost {
+    .CreatePost_head {
+        position: relative;
+        border-bottom: 0.5px solid $notHover_color_light;
+        padding: 20px 0;
+        text-align: center;
+
+        h2 {
+            font-size: 1.1rem;
+            margin: 0
+        }
+    }
+
+    .btn_close_create_post {
+        @include btn_border;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+    }
+
+    .CreatePost_user {
+        @include flex;
+        margin-top: 12px;
+
+        .CreatePost_user_avatar {
+            width: 50px;
+            border-radius: 100px;
+            overflow: hidden;
+            margin-right: 12px;
+
+            div {
+                padding-top: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+
+        .CreatePost_user_name {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+
+    }
+
+    .CreatePost_setContent {
+        margin-top: 20px;
+    }
+
+    .CreatePost_setContent_text {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 1.6rem;
+        text-wrap: wrap;
+        height: 150px;
+    }
+
+    .CreatePost_setContent_file {
+        border: 1px solid $notHover_color_light;
+        position: relative;
+        border-radius: 10px;
+        padding: 10px;
+        height: 150px;
+        display: flex;
+        margin-bottom: 12px;
+        display: none;
+
+        label {
+            margin: auto;
+            text-align: center;
+
+            .CreatePost_setContent_file_btn {
+                @include btn_border;
+            }
+        }
+
+        .CreatePost_setContent_file_btn_close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            @include btn_border;
+            font-size: 1rem;
+        }
+
+        &.active {
+            display: flex;
+        }
+
+    }
+
+    .CreatePost_more {
+        @include flex;
+        justify-content: space-between;
+
+        .CreatePost_more_options {
+            @include flex;
+
+            .CreatePost_more_item {
+                @include btn_border;
+            }
+        }
+    }
+}

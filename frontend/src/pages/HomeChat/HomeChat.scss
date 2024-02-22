@@ -109,6 +109,15 @@
         padding: 12px;
         border-radius: 20px;
         background-color: $notHover_color_light;
+        @include flex;
+
+        .HomeChat_task_input_file {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
 
         input {
             width: 100%;

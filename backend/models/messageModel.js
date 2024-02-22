@@ -5,7 +5,9 @@ const message = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'auth'
     },
-    content: { type: String, require: true },
+    content: [
+        { type: String, require: true }
+    ],
     userRecevied: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'auth'

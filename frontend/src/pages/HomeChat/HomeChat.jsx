@@ -5,8 +5,12 @@ import Message from '../../components/Message/Message'
 import socket from '../../config/socketIO'
 import { setShowWelcome } from '../../redux/showWelcome'
 import Welcome from '../../components/Welcome/Welcome'
-import EmojiPicker from 'emoji-picker-react';
+import { convertToBase64 } from '../../utils'
 
+
+
+
+import EmojiPicker from 'emoji-picker-react';
 import { toast } from 'react-toastify'
 import {
     PhoneOutlined, VideoCameraOutlined,
@@ -27,30 +31,29 @@ function HomeChat() {
     const { chat } = useSelector(state => state.chat)
     const profile = chat?.profile
     const { currentAuth } = useSelector(state => state.auth)
+    const [message, setMessage] = useState('')
+    const [files, setFiles] = useState([])
     const { allMessage } = useSelector(state => state.message)
     const { status } = useSelector(state => state.welcome)
     const [openEmoji, setOpenEmoji] = useState(false)
 
     const handleSubmitMessage = (event) => {
         event.preventDefault()
-        const content = event.target[1].value
-        if (content === "") {
-            toast.warning("Bạn chưa nhập nội dung tin nhắn!!!")
-        } else {
-            const frameChat = document.querySelector('.HomeChat_content')
-            event.target[1].value = ''
-            createMessage(currentAuth.auth._id, chat._id, content)
-            getAllMessageForChat(dispatch, currentAuth.auth._id, chat._id)
-            getMessageLatest(dispatch, currentAuth.auth._id, chat._id)
-            frameChat.scrollTop = frameChat.scrollHeight
-            const data = {
-                from: currentAuth.auth._id,
-                to: chat._id,
-                content: content
-            }
-
-            socket.emit('send-message', data)
+        const content = [message, ...files]
+        const frameChat = document.querySelector('.HomeChat_content')
+        setMessage('')
+        setFiles([])
+        createMessage(currentAuth.auth._id, chat._id, content)
+        getAllMessageForChat(dispatch, currentAuth.auth._id, chat._id)
+        // getMessageLatest(dispatch, currentAuth.auth._id, chat._id)
+        frameChat.scrollTop = frameChat.scrollHeight
+        const data = {
+            from: currentAuth.auth._id,
+            to: chat._id,
+            content
         }
+
+        socket.emit('send-message', data)
     }
 
 
@@ -78,8 +81,19 @@ function HomeChat() {
     }
 
     const handleClickEmoji = (emoji) => {
-        console.log(emoji)
+        setMessage(prev => prev + emoji.emoji)
     }
+
+    const handleChangeFile = async event => {
+        const listFile = event.target.files
+        for (let i = 0; i < listFile.length; i++) {
+            const filebase64 = await convertToBase64(listFile[i])
+            setFiles(prevFile => [...prevFile, filebase64])
+        }
+
+    }
+
+
 
     return <div className="HomeChat">
         {
@@ -136,7 +150,14 @@ function HomeChat() {
                                 allMessage === null ?
                                     <></> :
                                     allMessage?.messages.map((message, i) => {
-                                        return <Message key={i} avatar={chat.avatar} who={message.sender} content={message.content} />
+                                        if (message.content.length > 1) {
+                                            const listMessage = message.content
+                                            return listMessage.map(m => {
+                                                return <Message key={m} avatar={chat.avatar} who={message.sender} content={m} />
+                                            })
+                                        } else {
+                                            return <Message key={i} avatar={chat.avatar} who={message.sender} content={message.content} />
+                                        }
                                     })
                             }
 
@@ -155,10 +176,20 @@ function HomeChat() {
                             <EmojiPicker className='HomeChat_task_emojiPicker' open={openEmoji} onEmojiClick={e => handleClickEmoji(e)} />
 
                         </div>
-                        <input type="file" name="file" id="fileChat" hidden />
+                        <input multiple onChange={e => handleChangeFile(e)} type="file" name="file" id="fileChat" hidden />
 
                         <div className="HomeChat_task_input">
-                            <input type="text" placeholder='Aa' name='message' id='message' />
+                            <input onChange={e => setMessage(e.target.value)} value={message} type="text" placeholder='Aa' name='message' id='message' />
+                            {
+                                files.length !== 0 ?
+                                    files.map(file => {
+                                        if (file.includes('data:video')) {
+                                            return <video key={file} className='HomeChat_task_input_file' src={file}></video>
+                                        }
+                                        return <input key={file} multiple className='HomeChat_task_input_file' type="image" src={file} alt="" />
+                                    }) :
+                                    <></>
+                            }
                         </div>
                         <LikeOutlined className='HomeChat_task_action HomeChat_task_like' />
                     </form>

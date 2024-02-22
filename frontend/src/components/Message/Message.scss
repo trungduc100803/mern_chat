@@ -16,6 +16,17 @@
         }
     }
 
+    .ant-image {
+        width: 20%;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .MessageRecieved_file {
+        height: 300px;
+        object-fit: cover;
+    }
+
     .MessageRecieved_text {
         font-size: 1rem;
         padding: 10px;
@@ -30,6 +41,17 @@
     justify-content: flex-end;
     margin-right: 12px;
     margin-bottom: 12px;
+
+    .ant-image {
+        width: 20%;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .MessageSend_file {
+        height: 300px;
+        object-fit: cover;
+    }
 
     .MessageSend_text {
         font-size: 1rem;

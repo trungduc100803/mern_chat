@@ -13,13 +13,17 @@ import {
     CiCircleOutlined
 } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
-import { Image } from 'antd'
+import { useSelector } from 'react-redux'
+// import { Image } from 'antd'
 
 function Profile() {
 
     const IDCurrentAuth = window.location.href.split('/').pop()
     const [visibleModalEditProfile, setVisibleModalEditProfile] = useState(false)
+    const [visibleCreatePost, setVisibleCreatePost] = useState(false)
     const [currentProfile, setCurrentProfile] = useState({})
+    const { currentAuth } = useSelector(state => state.auth)
+
     useEffect(() => {
         const getAuth = async () => {
             const auth = await getAuthByID(IDCurrentAuth)
@@ -34,7 +38,12 @@ function Profile() {
         setVisibleModalEditProfile(true)
     }
 
+    const handleVisibleCreatePost = () => {
+        setVisibleCreatePost(true)
+    }
+
     return <div className="Profile">
+        <Modal visibleModal={visibleCreatePost} setVisibleModal={setVisibleCreatePost} inner={typeModal.createPost} />
         <Modal visibleModal={visibleModalEditProfile} setVisibleModal={setVisibleModalEditProfile} inner={typeModal.editProfile} />
         <div className="Profile_head">
             <div className="Profile_cover">
@@ -60,12 +69,18 @@ function Profile() {
                 {window.location.href.includes('/me/profile') ?
                     <div className="Profile_group_btn">
                         <button onClick={handleVisibleModalEditProfile} className='btn_edit_profile'>Chỉnh sửa</button>
+                        <button onClick={handleVisibleCreatePost} className='btn_create_post_profile'>Tạo bài viết</button>
                     </div> :
-
-                    <div className="Profile_group_btn">
-                        <button className='btn_accept_friend'>Chấp nhận lời mời</button>
-                        <button className='btn_send_message'>Nhắn tin</button>
-                    </div>
+                    currentAuth.auth.frienned.includes(currentProfile._id) ?
+                        <div className="Profile_group_btn">
+                            <button className='btn_accept_friend'>Hủy kết bạn</button>
+                            <button className='btn_send_message'>Nhắn tin</button>
+                        </div>
+                        :
+                        <div className="Profile_group_btn">
+                            <button className='btn_accept_friend'>Chấp nhận lời mời</button>
+                            <button className='btn_send_message'>Nhắn tin</button>
+                        </div>
                 }
             </div>
         </div>

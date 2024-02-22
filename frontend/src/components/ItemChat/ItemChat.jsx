@@ -44,7 +44,7 @@ function ItemChat({ chat }) {
         }
         <div className="itemChat_content">
             <div className="itemChat_name">{chat.username}</div>
-            <div className="itemChat_message">
+            {/* <div className="itemChat_message">
                 {
                     latestMessage?.sender === currentAuth.auth._id ?
                         <>
@@ -56,7 +56,7 @@ function ItemChat({ chat }) {
                             <div className="itemChat_content_message">{latestMessage?.content}</div>
                         </>
                 }
-            </div>
+            </div> */}
         </div>
         <EllipsisOutlined className='itemChat_setting' />
     </div>

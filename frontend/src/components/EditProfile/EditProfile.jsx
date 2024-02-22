@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './EditProfile.scss'
 import { updateAvatar, updateCover, updateDesc } from '../../services/api'
 import { typeModal } from '../Modal/configModal'
+import { convertToBase64 } from '../../utils'
 
 import { CloseOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import Modal from '../Modal/Modal'
@@ -32,18 +33,7 @@ function EditProfile({ setVisibleModal }) {
             hiddenInputEditDesc()
         }
     }
-    const convertToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const fileReader = new FileReader()
-            fileReader.readAsDataURL(file)
-            fileReader.onload = () => {
-                resolve(fileReader.result)
-            }
-            fileReader.onerror = err => {
-                reject(err)
-            }
-        })
-    }
+
 
     const changeAvatar = async (event) => {
         const file = event.target.files[0]

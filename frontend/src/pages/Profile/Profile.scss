@@ -80,6 +80,16 @@
                     }
                 }
 
+                .btn_create_post_profile {
+                    background-color: $notHover_color_light;
+
+                    &:hover {
+                        background-color: $fontHover_color_light;
+                        transition: all ease 0.2s;
+                        cursor: pointer;
+                    }
+                }
+
                 .btn_send_message {
 
                     &:hover {
