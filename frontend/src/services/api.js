@@ -1,7 +1,7 @@
 import request from "../config/axios";
 import { setSuccessAuth, setEmptyAuth, setErrAuth } from '../redux/authSlice'
 import { setSuccesMessage, setFailMessage, setLatestMessage } from '../redux/messageSlice'
-import { setSuccessFriendSuggest, setSuccessFriendRequestAddFriend, deleteFriendRequestAddFriend } from "../redux/friendSlice";
+import { setSuccessFriendSuggest, setSuccessFriendRequestAddFriend } from "../redux/friendSlice";
 import { setChats } from "../redux/chatSlice";
 
 export const login = async (data, dispatch) => {
@@ -232,6 +232,30 @@ export const cancelFriend = async (IDAuthSendRequest, IDAuthReceviedRequest, dis
     if (auth) {
         if (auth.data.success) {
             dispatch(setSuccessAuth(auth.data))
+        }
+    }
+}
+
+
+export const createPost = async (IDAuth, data) => {
+    const post = await request.post('post/create-post', {
+        IDAuth,
+        data
+    })
+
+    if (post) {
+        if (post.data.success) {
+            return post.data.post
+        }
+    }
+}
+
+export const getAllPostForAuth = async (IDAuth) => {
+    const posts = await request.get(`post/get-all-post-for-auth?IDAuth=${IDAuth}`)
+
+    if (posts) {
+        if (posts.data.success) {
+            return posts.data.posts
         }
     }
 }

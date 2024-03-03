@@ -72,9 +72,11 @@ DB.connect()
 
 const authRouter = require('./routers/auth')
 const messageRouter = require('./routers/message')
+const postRouter = require('./routers/post')
 
 app.use('/api/auth', authRouter)
 app.use('/api/message', messageRouter)
+app.use('/api/post', postRouter)
 
 
 httpServer.listen(PORT, () => {

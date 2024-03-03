@@ -67,10 +67,14 @@
         position: relative;
         border-radius: 10px;
         padding: 10px;
-        height: 150px;
-        display: flex;
+        min-height: 150px;
         margin-bottom: 12px;
         display: none;
+
+        .CreatePost_setContent_file_body{
+            display: flex;
+            height: 100%;
+        }
 
         label {
             margin: auto;
@@ -90,7 +94,27 @@
         }
 
         &.active {
-            display: flex;
+            display: block;
+        }
+
+        .CreatePost_setContent_file_preview{
+            @include flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .CreatePost_setContent_file_item{
+            width: 20%;
+            padding: 10px;
+            overflow: hidden;
+            
+            div{
+                border-radius: 10px;
+                padding-top: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
         }
 
     }
