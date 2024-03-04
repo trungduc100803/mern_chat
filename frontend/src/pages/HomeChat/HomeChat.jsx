@@ -64,7 +64,9 @@ function HomeChat() {
             getAllMessageForChat(dispatch, currentAuth.auth._id, chat._id)
             getMessageLatest(dispatch, currentAuth.auth._id, chat._id)
             const frameChat = document.querySelector('.HomeChat_content')
-            frameChat.scrollTop = frameChat.scrollHeight
+            if (frameChat) {
+                frameChat.scrollTop = frameChat.scrollHeight
+            }
         })
 
         dispatch(setShowWelcome())

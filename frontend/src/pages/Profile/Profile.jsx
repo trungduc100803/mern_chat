@@ -40,10 +40,11 @@ function Profile() {
         getAuth()
 
         const getAllPost = async () => {
-            const posts = await getAllPostForAuth(currentAuth.auth._id)
+            const posts = await getAllPostForAuth(IDCurrentAuth)
             dispatch(setSuccessAllPost(posts))
         }
         getAllPost()
+
     }, [])
 
 
@@ -126,77 +127,101 @@ function Profile() {
 
             <div className="Profile_inner_content">
                 {
-                    allPost !== null && 
+                    allPost !== null &&
                     allPost.map((post) => {
 
-                        const numEmotion = post.emotion.like.length + post.emotion.haha.length +post.emotion.love.length + post.emotion.sad.length
+                        const numEmotion = post.emotion.like.length + post.emotion.haha.length + post.emotion.love.length + post.emotion.sad.length
                         const handleClickLike = () => {
-                            console.log(post._id)
+                            const likeNo = document.querySelector('.Profile_inner_content_btn_emotion_like_no_active')
+                            const liked = document.querySelector('.Profile_inner_content_btn_emotion_liked')
+
+                            likeNo.classList.add('hide')
+                            liked.classList.add('active')
                         }
-                        
-                        
+
+
+                        const handleCancelLike = () => {
+                            const likeNo = document.querySelector('.Profile_inner_content_btn_emotion_like_no_active')
+                            const liked = document.querySelector('.Profile_inner_content_btn_emotion_liked')
+
+                            likeNo.classList.remove('hide')
+                            liked.classList.remove('active')
+                        }
+
+
                         return <div key={post._id} className="Profile_inner_content_item">
-                        <div className="Profile_inner_content_head">
-                            <div className="Profile_inner_content_head_left">
-                                <div className="Profile_inner_content_avatar">
-                                    <div className="Profile_inner_content_avatar_img">
+                            <div className="Profile_inner_content_head">
+                                <div className="Profile_inner_content_head_left">
+                                    <div className="Profile_inner_content_avatar">
+                                        <div className="Profile_inner_content_avatar_img">
+                                            <div style={{ backgroundImage: `url(${currentProfile?.auth?.avatar})` }}></div>
+                                        </div>
+                                    </div>
+
+                                    <div className="Profile_inner_content_item_info">
+                                        <div className="Profile_inner_content_item_name">Trung duc</div>
+                                        <div className="Profile_inner_content_item_timeUp">4 day</div>
+                                    </div>
+                                </div>
+
+                                <EllipsisOutlined className='Profile_inner_content_item_more' />
+                            </div>
+
+                            <div className="Profile_inner_content_body">
+                                <div className="Profile_inner_content_body_caption">{post.contentText}</div>
+
+                                <div className="Profile_inner_content_body_list_img">
+                                    <div style={{ backgroundImage: `url(${post.file[0]})` }}></div>
+                                </div>
+                            </div>
+
+                            <div className="Profile_inner_content_status">
+                                <img src={likePNG} alt="" />
+                                <div className="Profile_inner_content_status_number">{numEmotion}</div>
+                            </div>
+
+                            <div className="Profile_inner_content_btn">
+                                <button className='Profile_inner_content_btn_emotion'>
+                                    <div className='Profile_inner_content_btn_emotion_like' >
+                                        <div className="Profile_inner_content_btn_emotion_like_no_active" onClick={handleClickLike}>
+                                            <LikeOutlined /> Thích
+                                        </div>
+                                        <img className='Profile_inner_content_btn_emotion_liked' src={likePNG} onClick={handleCancelLike} alt="" />
+                                        {/* <img src={hahaPNG} alt="" />
+                                        <img src={heartPNG} alt="" />
+                                        <img src={sadPNG} alt="" /> */}
+                                    </div>
+
+                                    <div className="Profile_inner_content_btn_emotion_option">
+                                        <img src={likePNG} alt="" />
+                                        <img src={hahaPNG} alt="" />
+                                        <img src={heartPNG} alt="" />
+                                        <img src={sadPNG} alt="" />
+                                    </div>
+                                </button>
+                                <button className='Profile_inner_content_btn_comment'>
+                                    <CommentOutlined /> Bình luận
+                                </button>
+                                <button className='Profile_inner_content_btn_share'>
+                                    <ShareAltOutlined /> Chia sẻ
+                                </button>
+                            </div>
+
+                            <div className="Profile_inner_content_comment">
+                                <div className="Profile_inner_content_comment_avatar">
+                                    <div className="Profile_inner_content_comment_avatar_img">
                                         <div style={{ backgroundImage: `url(${currentAuth.auth.avatar})` }}></div>
                                     </div>
                                 </div>
-    
-                                <div className="Profile_inner_content_item_info">
-                                    <div className="Profile_inner_content_item_name">Trung duc</div>
-                                    <div className="Profile_inner_content_item_timeUp">4 day</div>
-                                </div>
-                            </div>
-    
-                            <EllipsisOutlined className='Profile_inner_content_item_more' />
-                        </div>
-    
-                        <div className="Profile_inner_content_body">
-                            <div className="Profile_inner_content_body_caption">{post.contentText}</div>
-    
-                            <div className="Profile_inner_content_body_list_img">
-                                <div style={{ backgroundImage: `url(${post.file[0]})` }}></div>
-                            </div>
-                        </div>
-    
-                        <div className="Profile_inner_content_status">
-                            <img src={likePNG} alt="" />
-                            <div className="Profile_inner_content_status_number">{numEmotion}</div>
-                        </div>
-    
-                        <div className="Profile_inner_content_btn">
-                            <button onClick={handleClickLike} className='Profile_inner_content_btn_emotion'>
-                                <LikeOutlined /> Thích
 
-                                <div className="Profile_inner_content_btn_emotion_option">
-                                <LikeOutlined /><LikeOutlined /><LikeOutlined /><LikeOutlined />
-                                </div>
-                            </button>
-                            <button className='Profile_inner_content_btn_comment'>
-                                <CommentOutlined /> Bình luận
-                                </button>
-                            <button className='Profile_inner_content_btn_share'>
-                                <ShareAltOutlined /> Chia sẻ
-                                </button>
-                        </div>
-    
-                        <div className="Profile_inner_content_comment">
-                            <div className="Profile_inner_content_comment_avatar">
-                                <div className="Profile_inner_content_comment_avatar_img">
-                                    <div style={{ backgroundImage: `url(${currentAuth.auth.avatar})` }}></div>
+                                <div className="Profile_inner_content_comment_input">
+                                    <input className='Profile_inner_content_comment_ip_text' placeholder='Viết bình luận ...' type="text" name="" id="" />
+
+                                    <CiCircleOutlined />
+                                    <CoffeeOutlined />
                                 </div>
                             </div>
-    
-                            <div className="Profile_inner_content_comment_input">
-                                <input className='Profile_inner_content_comment_ip_text' placeholder='Viết bình luận ...' type="text" name="" id="" />
-    
-                                <CiCircleOutlined />
-                                <CoffeeOutlined />
-                            </div>
                         </div>
-                    </div>
                     })
                 }
             </div>

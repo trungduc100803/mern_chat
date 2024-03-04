@@ -265,6 +265,7 @@
                 .Profile_inner_content_btn {
                     @include flex;
                     font-size: 1rem;
+                    position: relative;
                     justify-content: space-between;
                     border-bottom: 0.5px solid $notHover_color_light;
                     border-top: 0.5px solid $notHover_color_light;
@@ -284,17 +285,53 @@
                         }
                     }
 
-                    .Profile_inner_content_btn_emotion{
+                    .Profile_inner_content_btn_emotion {
                         position: relative;
 
-                        .Profile_inner_content_btn_emotion_option{
+                        .Profile_inner_content_btn_emotion_like_no_active.hide {
+                            display: none;
+                        }
+
+                        .Profile_inner_content_btn_emotion_liked {
+                            width: 26px;
+                            height: 26px;
+                            object-fit: cover;
+                            display: none;
+                            padding: 0 40%;
+
+                            &.active {
+                                display: inline;
+                            }
+                        }
+
+                        .Profile_inner_content_btn_emotion_option {
                             position: absolute;
-                            top: -28px;
-                            left: 0;
+                            top: 0px;
+                            left: 20%;
                             padding: 6px;
                             border-radius: 6px;
-                            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                            box-shadow: rgba(48, 48, 49, 0.2) 0px 7px 29px 0px;
                             background-color: white;
+                            @include flex;
+                            opacity: 0;
+
+                            img {
+                                margin: 0 10px;
+                                width: 26px;
+                                height: 26px;
+                                object-fit: cover;
+
+                                &:hover {
+                                    transform: scale(1.2);
+                                    transition: all 0.3s ease;
+                                }
+                            }
+                        }
+
+                        &:hover .Profile_inner_content_btn_emotion_option {
+                            transition: all 0.4s ease;
+                            opacity: 1;
+                            top: -36px;
                         }
                     }
                 }
