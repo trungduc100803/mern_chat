@@ -67,6 +67,97 @@ const postController = {
                 message: 'error'
             })
         }
+    },
+    likePost: async (req, res) => {
+        try {
+            const {IDAuthLiked, IDPost} = req.body
+
+            if(!IDAuthLiked || !IDPost) return res.status(402).send({
+                success: false,
+                message: 'invalid fields'
+            })
+
+            const post = await postModel.findById(IDPost)
+
+            if(!post) return res.status(405).send({
+                success: false,
+                message: 'not exit post'
+            })
+
+            post.emotion.like.push(IDAuthLiked)
+            post.save()
+
+            return res.status(200).send({
+                success: true,
+                post,
+                message:"like success"
+            })
+        } catch (error) {
+            return res.status(500).send({
+                success: false,
+                error,
+                message: 'error'
+            })
+        }
+    },
+    cancelLikePost: async (req, res) => {
+        try {
+            const {IDAuthLiked, IDPost} = req.body
+            if(!IDAuthLiked || !IDPost) return res.status(402).send({
+                success: false,
+                message: 'invalid fields'
+            })
+
+            const post = await postModel.findById(IDPost)
+
+            if(!post) return res.status(405).send({
+                success: false,
+                message: 'not exit post'
+            })
+
+            const indexAuth = post.emotion.like.indexOf(IDAuthLiked)
+            post.emotion.like.splice( indexAuth, 1)
+            post.save()
+            
+
+            return res.status(200).send({
+                success: true,
+                message: 'cancel like success',
+                post
+            })
+
+        } catch (error) {
+            return res.status(500).send({
+                success: false,
+                message: 'error',
+                error
+            })
+        }
+    },
+    commentPost: async (req, res) => {
+        try {
+            const {IDAuthCommented, IDAuthor, contentComment, IDPost} = req.body
+            if(!IDAuthCommented || !IDAuthor, !contentComment || !IDPost) return res.status(402).send({
+                success: false, 
+                message: 'invalid fields'
+            })
+
+            const post = await postModel.findById(IDPost)
+
+            if(!post) return res.status(405).send({
+                success: false,
+                message: 'not exist post'
+            })
+
+            
+
+        } catch (error) {
+            return res.status(500).send({
+                success: false,
+                error,
+                message: 'error'
+            })
+        }
     }
 }
 

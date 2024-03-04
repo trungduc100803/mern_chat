@@ -7,10 +7,30 @@ const post = mongoose.Schema({
         {type: String, default: ''}
     ],
     emotion: {
-        like: {type: Number, default: 0},
-        haha: {type: Number, default: 0},
-        love: {type: Number, default: 0},
-        sad: {type: Number, default: 0}
+        like: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'auth'
+            }
+        ],
+        haha: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'auth'
+            }
+        ],
+        love: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'auth'
+            }
+        ],
+        sad: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'auth'
+            }
+        ]
     },
     comment: [
         {

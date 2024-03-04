@@ -283,6 +283,20 @@
                             background-color: $notHover_color_light;
                         }
                     }
+
+                    .Profile_inner_content_btn_emotion{
+                        position: relative;
+
+                        .Profile_inner_content_btn_emotion_option{
+                            position: absolute;
+                            top: -28px;
+                            left: 0;
+                            padding: 6px;
+                            border-radius: 6px;
+                            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                            background-color: white;
+                        }
+                    }
                 }
 
 

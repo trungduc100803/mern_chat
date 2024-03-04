@@ -6,6 +6,10 @@ import noCoverImg from '../../assets/noCover.jpg'
 import emptyAvatar from '../../assets/userEmpty.png'
 import { getAuthByID, getAllPostForAuth } from '../../services/api'
 import { setSuccessAllPost } from '../../redux/postSlice'
+import hahaPNG from '../../assets/haha.png'
+import heartPNG from '../../assets/heart.png'
+import sadPNG from '../../assets/sad.png'
+
 
 import {
     HomeOutlined, EllipsisOutlined,
@@ -124,7 +128,13 @@ function Profile() {
                 {
                     allPost !== null && 
                     allPost.map((post) => {
-                        const numEmotion = post.emotion.like + post.emotion.haha +post.emotion.love + post.emotion.sad
+
+                        const numEmotion = post.emotion.like.length + post.emotion.haha.length +post.emotion.love.length + post.emotion.sad.length
+                        const handleClickLike = () => {
+                            console.log(post._id)
+                        }
+                        
+                        
                         return <div key={post._id} className="Profile_inner_content_item">
                         <div className="Profile_inner_content_head">
                             <div className="Profile_inner_content_head_left">
@@ -157,11 +167,19 @@ function Profile() {
                         </div>
     
                         <div className="Profile_inner_content_btn">
-                            <button className='Profile_inner_content_btn_emotion'>
+                            <button onClick={handleClickLike} className='Profile_inner_content_btn_emotion'>
                                 <LikeOutlined /> Thích
+
+                                <div className="Profile_inner_content_btn_emotion_option">
+                                <LikeOutlined /><LikeOutlined /><LikeOutlined /><LikeOutlined />
+                                </div>
                             </button>
-                            <button className='Profile_inner_content_btn_comment'><CommentOutlined /> Bình luận</button>
-                            <button className='Profile_inner_content_btn_share'><ShareAltOutlined /> Chia sẻ</button>
+                            <button className='Profile_inner_content_btn_comment'>
+                                <CommentOutlined /> Bình luận
+                                </button>
+                            <button className='Profile_inner_content_btn_share'>
+                                <ShareAltOutlined /> Chia sẻ
+                                </button>
                         </div>
     
                         <div className="Profile_inner_content_comment">
