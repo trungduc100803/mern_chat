@@ -24,6 +24,8 @@ function Profile() {
     const dispatch = useDispatch()
     const { allPost } = useSelector(state => state.post)
     const [currentProfile, setCurrentProfile] = useState({})
+    const [visibleLike, setVisibleLike] = useState(false)
+    const [visibleHaha, setVisibleHaha] = useState(false)
     const { currentAuth } = useSelector(state => state.auth)
     const IDCurrentAuth = window.location.href.split('/').pop()
 
@@ -128,24 +130,39 @@ function Profile() {
             <div className="Profile_inner_content">
                 {
                     allPost !== null &&
-                    allPost.map((post) => {
+                    allPost.map((post, i) => {
 
                         const numEmotion = post.emotion.like.length + post.emotion.haha.length + post.emotion.love.length + post.emotion.sad.length
-                        const handleClickLike = () => {
-                            const likeNo = document.querySelector('.Profile_inner_content_btn_emotion_like_no_active')
-                            const liked = document.querySelector('.Profile_inner_content_btn_emotion_liked')
-
-                            likeNo.classList.add('hide')
-                            liked.classList.add('active')
+                        const handleClickLike = (event) => {
+                            const element = event.target.className
+                            if(element === 'Profile_inner_content_btn_emotion_like_no_active'){
+                                const likeNo = event.target
+                                const liked = event.target.nextElementSibling
+    
+                                likeNo.classList.add('hide')
+                                liked.classList.add('active')
+                            }
                         }
 
 
-                        const handleCancelLike = () => {
-                            const likeNo = document.querySelector('.Profile_inner_content_btn_emotion_like_no_active')
-                            const liked = document.querySelector('.Profile_inner_content_btn_emotion_liked')
+                        const handleCancelLike = (event) => {
+
+                            const likeNo = event.target.previousElementSibling
+                            const liked = event.target
 
                             likeNo.classList.remove('hide')
                             liked.classList.remove('active')
+                        }
+
+                        const handClickLikeMore = (event) => {
+                            console.log(event.target.parentElement.previousSibling.children[0].className)
+                            const like = event.target.parentElement.previousSibling.children[0]
+
+                            if(like.className === 'Profile_inner_content_btn_emotion_like_no_active'){
+                                like.classList.add('hide')
+                            }else{
+                                
+                            }
                         }
 
 
@@ -183,17 +200,17 @@ function Profile() {
                             <div className="Profile_inner_content_btn">
                                 <button className='Profile_inner_content_btn_emotion'>
                                     <div className='Profile_inner_content_btn_emotion_like' >
-                                        <div className="Profile_inner_content_btn_emotion_like_no_active" onClick={handleClickLike}>
+                                        <div className={`Profile_inner_content_btn_emotion_like_no_active`} onClick={e => handleClickLike(e)}>
                                             <LikeOutlined /> Thích
                                         </div>
-                                        <img className='Profile_inner_content_btn_emotion_liked' src={likePNG} onClick={handleCancelLike} alt="" />
-                                        {/* <img src={hahaPNG} alt="" />
-                                        <img src={heartPNG} alt="" />
+                                        <img className={ 'Profile_inner_content_btn_emotion_liked ' } src={likePNG} onClick={e => handleCancelLike(e)} alt="" />
+                                        {/* <img src={hahaPNG} onClick={handlehaha} alt="" className={ visibleHaha ?'Profile_inner_content_btn_emotion_haha active' :'Profile_inner_content_btn_emotion_haha'}/> */}
+                                        {/* <img src={heartPNG} alt="" className=''/>
                                         <img src={sadPNG} alt="" /> */}
                                     </div>
 
                                     <div className="Profile_inner_content_btn_emotion_option">
-                                        <img src={likePNG} alt="" />
+                                        <img src={likePNG} alt="" onClick={e => handClickLikeMore(e)}/>
                                         <img src={hahaPNG} alt="" />
                                         <img src={heartPNG} alt="" />
                                         <img src={sadPNG} alt="" />
