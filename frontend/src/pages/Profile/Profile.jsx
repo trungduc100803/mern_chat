@@ -4,7 +4,7 @@ import { typeModal } from '../../components/Modal/configModal'
 import Modal from '../../components/Modal/Modal'
 import noCoverImg from '../../assets/noCover.jpg'
 import emptyAvatar from '../../assets/userEmpty.png'
-import { getAuthByID, getAllPostForAuth } from '../../services/api'
+import { getAuthByID, getAllPostForAuth, likePost } from '../../services/api'
 import { setSuccessAllPost } from '../../redux/postSlice'
 import hahaPNG from '../../assets/haha.png'
 import heartPNG from '../../assets/heart.png'
@@ -24,8 +24,6 @@ function Profile() {
     const dispatch = useDispatch()
     const { allPost } = useSelector(state => state.post)
     const [currentProfile, setCurrentProfile] = useState({})
-    const [visibleLike, setVisibleLike] = useState(false)
-    const [visibleHaha, setVisibleHaha] = useState(false)
     const { currentAuth } = useSelector(state => state.auth)
     const IDCurrentAuth = window.location.href.split('/').pop()
 
@@ -138,9 +136,11 @@ function Profile() {
                             if(element === 'Profile_inner_content_btn_emotion_like_no_active'){
                                 const likeNo = event.target
                                 const liked = event.target.nextElementSibling
-    
                                 likeNo.classList.add('hide')
                                 liked.classList.add('active')
+
+                                //handle like
+                                likePost(IDCurrentAuth, post._id)
                             }
                         }
 
@@ -152,17 +152,89 @@ function Profile() {
 
                             likeNo.classList.remove('hide')
                             liked.classList.remove('active')
+
+                            //handle cancel like
                         }
 
                         const handClickLikeMore = (event) => {
-                            console.log(event.target.parentElement.previousSibling.children[0].className)
                             const like = event.target.parentElement.previousSibling.children[0]
-
+                            
                             if(like.className === 'Profile_inner_content_btn_emotion_like_no_active'){
                                 like.classList.add('hide')
+                                const liked = event.target.parentElement.previousSibling.children[1]
+                                liked.classList.add('active')
+                                //handle like 
                             }else{
-                                
+                                const liked = event.target.parentElement.previousSibling.children[1]
+                                const like = event.target.parentElement.previousSibling.children[0]
+                                liked.classList.remove('active')
+                                like.classList.remove('hide')
+                                //handle cancel like
                             }
+                        }
+
+                        const handClickHeartMore = (event) => {
+                            const like = event.target.parentElement.offsetParent.children[0].firstChild
+                            if(like.className === 'Profile_inner_content_btn_emotion_like_no_active'){
+                                like.classList.add('hide')
+                                const heart = event.target.parentElement.offsetParent.children[0].children[3]
+                                heart.classList.add('active')
+                                //handle heart
+                            }else{
+                                const heart = event.target.parentElement.offsetParent.children[0].children[3]
+                                heart.classList.remove('active')
+                                like.classList.remove('hide')
+                            }
+                        }
+                        const handClickHahaMore = (event) => {
+                            const like = event.target.parentElement.offsetParent.children[0].firstChild
+                            if(like.className === 'Profile_inner_content_btn_emotion_like_no_active'){
+                                like.classList.add('hide')
+                                const haha = event.target.parentElement.offsetParent.children[0].children[2]
+                                haha.classList.add('active')
+                                //handle haha
+                            }else{
+                                const haha = event.target.parentElement.offsetParent.children[0].children[2]
+                                haha.classList.remove('active')
+                                like.classList.remove('hide')
+                            }
+
+                        }
+                        const handClickSadMore = (event) => {
+                            const like = event.target.parentElement.offsetParent.children[0].firstChild
+                            if(like.className === 'Profile_inner_content_btn_emotion_like_no_active'){
+                                like.classList.add('hide')
+                                const sad = event.target.parentElement.offsetParent.children[0].children[4]
+                                sad.classList.add('active')
+                                //handle sad
+                            }else{
+                                const sad = event.target.parentElement.offsetParent.children[0].children[4]
+                                sad.classList.remove('active')
+                                like.classList.remove('hide')
+                            }
+                        }
+
+                        const handleCancelHaha = (event) => {
+                            const like = event.target.parentElement.firstChild
+                            const haha = event.target.parentElement.children[2]
+
+                            like.classList.remove('hide')
+                            haha.classList.remove('active')
+                        }
+
+                        const handleCancelHeart = (event) => {
+                            const like = event.target.parentElement.firstChild
+                            const heart = event.target.parentElement.children[3]
+
+                            like.classList.remove('hide')
+                            heart.classList.remove('active')
+                        }
+                        const handleCancelSad = (event) => {
+                            const like = event.target.parentElement.firstChild
+                            const sad = event.target.parentElement.children[4]
+
+                            like.classList.remove('hide')
+                            sad.classList.remove('active')
                         }
 
 
@@ -204,16 +276,16 @@ function Profile() {
                                             <LikeOutlined /> Thích
                                         </div>
                                         <img className={ 'Profile_inner_content_btn_emotion_liked ' } src={likePNG} onClick={e => handleCancelLike(e)} alt="" />
-                                        {/* <img src={hahaPNG} onClick={handlehaha} alt="" className={ visibleHaha ?'Profile_inner_content_btn_emotion_haha active' :'Profile_inner_content_btn_emotion_haha'}/> */}
-                                        {/* <img src={heartPNG} alt="" className=''/>
-                                        <img src={sadPNG} alt="" /> */}
+                                        <img onClick={e => handleCancelHaha(e)} src={hahaPNG} alt="" className={ 'Profile_inner_content_btn_emotion_haha'}/>
+                                        <img src={heartPNG} onClick={e => handleCancelHeart(e)} alt="" className='Profile_inner_content_btn_emotion_heart'/>
+                                        <img src={sadPNG} onClick={e => handleCancelSad(e)} alt="" className='Profile_inner_content_btn_emotion_sad'/>
                                     </div>
 
                                     <div className="Profile_inner_content_btn_emotion_option">
                                         <img src={likePNG} alt="" onClick={e => handClickLikeMore(e)}/>
-                                        <img src={hahaPNG} alt="" />
-                                        <img src={heartPNG} alt="" />
-                                        <img src={sadPNG} alt="" />
+                                        <img src={hahaPNG} alt="" onClick={e => handClickHahaMore(e)}/>
+                                        <img src={heartPNG} alt="" onClick={e => handClickHeartMore(e)}/>
+                                        <img src={sadPNG} alt="" onClick={e => handClickSadMore(e)}/>
                                     </div>
                                 </button>
                                 <button className='Profile_inner_content_btn_comment'>

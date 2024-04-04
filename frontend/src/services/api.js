@@ -259,3 +259,15 @@ export const getAllPostForAuth = async (IDAuth) => {
         }
     }
 }
+
+export const likePost = async (IDAuthLiked, IDPost) => {
+    const posts = await request.post(`post/like-post`, {
+        IDAuthLiked, IDPost
+    })
+
+    if (posts) {
+        if (posts.data.success) {
+            console.log('like post')
+        }
+    }
+}
